@@ -123,7 +123,10 @@ class Bankuser(User):
 """Hope you enjoy :) """
 
 user1 = Bankuser("Jordon", '0000', "password")
-user2 = Bankuser("SomePerson", '5555', 'guessit')
+user2 = Bankuser("SomeUser", '5555', 'guessit')
+
+user2.change_pin() # enter pin to change pin
+user2.change_password() # enter password to change password
 
 user2.deposit() # this will prompt you here for deposit. input $5000 after password validation.
 user2.show_balance() # this will now show the new balance of $5000
