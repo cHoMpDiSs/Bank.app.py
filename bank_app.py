@@ -37,8 +37,9 @@ class User():
 
 
 
-class Bankuser(User):
-
+class Bankuser(User):  #Using inheritence here (unecessary but wanted to showcase and use inheritence). 
+                       #could have used just one class. But for readablity and less methods per class.  
+                        
     def __init__(self, name, pin, password):
 
         super().__init__(name, pin, password)
@@ -121,17 +122,42 @@ class Bankuser(User):
 """Driver Code For Program"""
 """I made the program to run interactively for easier check for functionality"""
 """Hope you enjoy :) """
+print("***********************************************")
+print("***********************************************")
+print("******Hello and welcome to bank of Jordon******")
+print("***********************************************")
+print("***********************************************")
 
-user1 = Bankuser("Jordon", '0000', "password")
-user2 = Bankuser("SomeUser", '5555', 'guessit')
+user1_name = input("Please Enter your name to register:")
+user1_password = input("Please provide a password:")
+user1_pin = input("Please provide a 4 digit PIN:")
 
-user2.change_pin() # enter pin to change pin
-user2.change_password() # enter password to change password
+user1 = Bankuser(user1_name, user1_pin, user1_password)
+user2 = Bankuser("RichPerson", "0000", "password")
+while True:
 
-user2.deposit() # this will prompt you here for deposit. input $5000 after password validation.
-user2.show_balance() # this will now show the new balance of $5000
-user1.show_balance() # user1 should have a starting balance of $0
-user2.transfer_money(user1) # here I put in user1 as the argument for transfer. Transfer $500
-user2.show_balance() # showing updated balance for user2
-user1.show_balance() # showing updated balance for user1
-user2.request_money(user1)  # same as above for transfer money but now we are requesting with double authentication.
+    print("***********************************************")
+    print("******1.Deposit***********2.Check Balance******")
+    print("***********************************************")
+    print("******3.Transfer**********4.Request Money******")
+    print("******************5.Exit***********************")
+    print("***********************************************")
+    user_selection = input(f"What would you like to do {user1.name}?")
+    
+    if user_selection == "1":
+        user1.deposit()
+
+    if user_selection == "2":
+        user1.show_balance()
+
+    if user_selection == "3":
+        print("Default user info is Name: RichPerson, PIN: 0000, Password: password")
+        user1.transfer_money(user2)
+
+    if user_selection == "4":
+        print("Default user info is Name: RichPerson, PIN: 0000, Password: password")
+        user1.request_money(user2)
+
+    if user_selection == "5":
+        print("Goodbye!")
+        break
